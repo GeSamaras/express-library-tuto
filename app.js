@@ -13,6 +13,16 @@ var usersRouter = require('./routes/users');
 var app = express();
 
 // view engine setup
+// Set up mongoose connection
+const mongoose = require("mongoose");
+mongoose.set("strictQuery", false);
+const mongoDB = "MONGODB";
+
+main().catch((err) => console.log(err));
+async function main() {
+  await mongoose.connect(mongoDB);
+}
+
 
 // this is the path where the templates will be stored
 app.set('views', path.join(__dirname, 'views'));
@@ -53,3 +63,4 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
+
